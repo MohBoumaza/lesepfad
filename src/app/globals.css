@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------
+ * Design tokens — Lesepfad Blueprint
+ * Source of truth: the published architecture/design-system proposal.
+ * Light palette on :root, dark overrides under prefers-color-scheme.
+ * ------------------------------------------------------------------- */
+:root {
+  --color-ink: #1c2333;
+  --color-ink-soft: #4a5064;
+  --color-accent: #c9791f;
+  --color-accent-strong: #a8630f;
+  --color-accent-tint: #f3ddb8;
+  --color-sage: #3f6b5c;
+  --color-sage-tint: #d9e6df;
+  --color-danger: #a6402f;
+  --color-danger-tint: #f3ddd5;
+  --color-bg: #fbf9f3;
+  --color-surface: #f2ede1;
+  --color-surface-raised: #ffffff;
+  --color-rule: #ddd4c0;
+  --color-rule-soft: #eae4d5;
+
+  /* Une teinte distincte par niveau CECR, pour repérer un niveau au premier
+     coup d'oeil dans la grille d'accueil, les puces et les cartes. */
+  --color-level-a1: #3f8f6b;
+  --color-level-a1-tint: #dcefe3;
+  --color-level-a2: #2f8f8a;
+  --color-level-a2-tint: #d9edec;
+  --color-level-b1: #c9791f;
+  --color-level-b1-tint: #f3ddb8;
+  --color-level-b2: #c05a2c;
+  --color-level-b2-tint: #f3ddd0;
+  --color-level-c1: #7a4fa0;
+  --color-level-c1-tint: #e8ddf0;
+  --color-level-c2: #a6402f;
+  --color-level-c2-tint: #f3ddd5;
+
+  --shadow-sm: 0 1px 2px rgba(28, 35, 51, 0.06);
+  --shadow-md: 0 4px 16px rgba(28, 35, 51, 0.08), 0 1px 3px rgba(28, 35, 51, 0.06);
+  --shadow-lg: 0 12px 32px rgba(28, 35, 51, 0.12), 0 2px 6px rgba(28, 35, 51, 0.08);
+
+  /* Redéfinit l'échelle standard de Tailwind (rounded-sm/md/lg) plutôt que
+     d'ajouter des noms custom, pour éviter toute collision avec les
+     utilitaires logiques de coin directionnel (rounded-s, rounded-e)
+     de Tailwind v4. */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #ece7d9;
+    --color-ink-soft: #b7b0a0;
+    --color-accent: #e6a54a;
+    --color-accent-strong: #f0bd75;
+    --color-accent-tint: #3a2e19;
+    --color-sage: #8fbba7;
+    --color-sage-tint: #1e2e28;
+    --color-danger: #e08972;
+    --color-danger-tint: #3a2320;
+    --color-bg: #14161c;
+    --color-surface: #1c1f28;
+    --color-surface-raised: #22252f;
+    --color-rule: #363a46;
+    --color-rule-soft: #2a2d38;
+
+    --color-level-a1: #6cc9a0;
+    --color-level-a1-tint: #1c3128;
+    --color-level-a2: #5fc2bd;
+    --color-level-a2-tint: #182f2e;
+    --color-level-b1: #e6a54a;
+    --color-level-b1-tint: #3a2e19;
+    --color-level-b2: #e08a5c;
+    --color-level-b2-tint: #3a2619;
+    --color-level-c1: #b48ad6;
+    --color-level-c1-tint: #2e2438;
+    --color-level-c2: #e08972;
+    --color-level-c2-tint: #3a2320;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.32), 0 1px 3px rgba(0, 0, 0, 0.24);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-accent: var(--color-accent);
+  --color-accent-strong: var(--color-accent-strong);
+  --color-accent-tint: var(--color-accent-tint);
+  --color-sage: var(--color-sage);
+  --color-sage-tint: var(--color-sage-tint);
+  --color-danger: var(--color-danger);
+  --color-danger-tint: var(--color-danger-tint);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-rule: var(--color-rule);
+  --color-rule-soft: var(--color-rule-soft);
+
+  --color-level-a1: var(--color-level-a1);
+  --color-level-a1-tint: var(--color-level-a1-tint);
+  --color-level-a2: var(--color-level-a2);
+  --color-level-a2-tint: var(--color-level-a2-tint);
+  --color-level-b1: var(--color-level-b1);
+  --color-level-b1-tint: var(--color-level-b1-tint);
+  --color-level-b2: var(--color-level-b2);
+  --color-level-b2-tint: var(--color-level-b2-tint);
+  --color-level-c1: var(--color-level-c1);
+  --color-level-c1-tint: var(--color-level-c1-tint);
+  --color-level-c2: var(--color-level-c2);
+  --color-level-c2-tint: var(--color-level-c2-tint);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-source-sans);
+  --font-mono: var(--font-plex-mono);
+}
+
+body {
+  background:
+    radial-gradient(ellipse 900px 500px at 8% -10%, var(--color-accent-tint) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 0%, var(--color-sage-tint) 0%, transparent 55%),
+    var(--color-bg);
+  background-attachment: fixed;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* ---------------------------------------------------------------------
+ * Utilitaires partagés — cartes et interactions.
+ * ------------------------------------------------------------------- */
+.card-surface {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+}
+
+.card-interactive:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-strong) 100%);
+  color: #2a1a05;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.05);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  filter: grayscale(0.4);
+}
